@@ -1,3 +1,4 @@
+/*
 var Game = function(){};
 
 Game.prototype.init = function(){
@@ -6,3 +7,15 @@ Game.prototype.init = function(){
 Game.prototype.run = function(){
     console.log("blast them!!!");
 }
+*/
+
+var Game = Class.extend({
+
+    init: function(){
+
+    },
+
+    run: function(){
+        console.log("blast them!!!!");
+    }
+});
