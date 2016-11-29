@@ -12,10 +12,13 @@ Game.prototype.run = function(){
 var Game = Class.extend({
 
     init: function(){
-        this.canvas = new Canvas(640,480);
+        this.canvas = new Canvas(640,480); // set resolution for workspace
     },
 
     run: function(){
+        this.canvas.animate(function(){
+            console.log("I have bad feeling about this...");
+        });
         console.log("blast them!!!!");
     }
 });

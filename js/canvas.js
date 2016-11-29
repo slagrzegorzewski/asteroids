@@ -13,5 +13,22 @@ var Canvas = Class.extend({
         })(this.canvas.getContext("2d"));
 
         document.body.appendChild(this.canvas);
+    },
+    // reqest for browser to refresh animation
+    animate: function(loop){
+        var refre = (function(){
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.oRequestAnimationFrame ||
+                window.msRequestWindowFrame
+        })();
+
+        var self = this;
+        var l = function(){
+            loop();
+            refre(l, self.canvas);
+        }
+        refre(l, self.canvas);
     }
 });
