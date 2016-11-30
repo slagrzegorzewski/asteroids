@@ -12,7 +12,7 @@ var Canvas = Class.extend({
             return ctx;
         })(this.canvas.getContext("2d"));
 
-        document.body.appendChild(this.canvas);
+        document.body.appendChild(this.canvas); //put canvas in body element
     },
     // reqest for browser to refresh animation
     animate: function(loop){
@@ -21,7 +21,11 @@ var Canvas = Class.extend({
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
-                window.msRequestWindowFrame
+                window.msRequestWindowFrame ||
+                // function for operation frequency
+                function(cb, el){
+                    window.setTimeout(cb, 1000/60);
+                }
         })();
 
         var self = this;
