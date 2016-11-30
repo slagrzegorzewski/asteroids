@@ -30,13 +30,13 @@ var Game = Class.extend({
             if(self.nextState !== States.NO_CHANGE){
                 switch(self.nextState){
                         case States.MENU:
-                        self.currentState - new State(self);
+                        self.currentState = new State(self);
                         break;
                         case States.GAME:
-                        self.currentState - new State(self);
+                        self.currentState = new GameState(self);
                         break;
                         case States.END:
-                        self.currentState - new State(self);
+                        self.currentState = new State(self);
                         break;
                 }
                 self.nextState = States.NO_CHANGE;
