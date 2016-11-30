@@ -9,6 +9,17 @@ var Canvas = Class.extend({
             ctx.width = ctx.canvas.width;
             ctx.height = ctx.canvas.height;
 
+            ctx.drawPolygon = function(p, x, y){
+                p = p.points;
+
+                this.beginPath();
+                this.moveTo(p[0] + x, p[1] + y);
+                for(var i = 2, len = p.length; i < len; i += 2){
+                    this.lineTo(p[i] + x, p[i + 1] + y);
+                }
+                this.stroke();
+            }
+
             return ctx;
         })(this.canvas.getContext("2d"));
 
