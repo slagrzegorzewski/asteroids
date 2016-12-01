@@ -18,6 +18,10 @@ var Canvas = Class.extend({
                     this.lineTo(p[i] + x, p[i + 1] + y);
                 }
                 this.stroke();
+            };
+
+            ctx.clearAll = function(){
+                this.clearRect(0, 0, this.width, this.height);
             }
 
             return ctx;

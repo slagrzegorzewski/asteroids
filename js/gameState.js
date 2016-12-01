@@ -9,10 +9,11 @@ var GameState = State.extend({
     },
 
     update: function(){
-
+        this.poly.rotate(0.01);
     },
 
     render: function(ctx){
+        ctx.clearAll();
         ctx.drawPolygon(this.poly, 100, 100);
     }
 });
