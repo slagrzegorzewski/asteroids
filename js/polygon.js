@@ -14,6 +14,7 @@ var Polygon = Class.extend({
             var x = this.points[i];
             var y = this.points[i+1];
 
+            // math - raotating
             this.points[i] = cs*x - sn*y;
             this.points[i+1] = sn*x + cs*y;
         }
