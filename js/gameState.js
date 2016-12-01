@@ -16,7 +16,9 @@ var GameState = State.extend({
         this._super(game);
 
         var n = Math.round(Math.random() * (Points.ASTEROIDS.length - 1));
-        this.astr = new Asteroid(Points.ASTEROIDS[n], 20, 100, 100);
+        this.astr = new Asteroid(Points.ASTEROIDS[n], 10, 100, 100);
+        this.astr.maxX = game.canvas.ctx.width;
+        this.astr.maxY = game.canvas.ctx.height;
     },
 
     update: function(){
