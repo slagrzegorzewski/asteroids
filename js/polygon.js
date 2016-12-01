@@ -5,7 +5,7 @@ var Polygon = Class.extend({
     init: function(p){
             this.points = p.slice(0);
     },
-
+    // rotate function for asteroid
     rotate: function(theta){
         var cs = Math.cos(theta);
         var sn = Math.sin(theta);
@@ -18,7 +18,6 @@ var Polygon = Class.extend({
             this.points[i+1] = sn*x + cs*y;
         }
     },
-
     scale: function(c){
         for(var i = 0, len = this.points.length; i < len; i++){
             this.points[i] *= c;

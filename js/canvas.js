@@ -1,5 +1,6 @@
+// here we are creating area for action
 var Canvas = Class.extend({
-
+    //
     init: function(width, height){
         this.canvas = document.createElement("canvas");
         this.canvas.width = width;

@@ -13,6 +13,7 @@ var Asteroid = Polygon.extend({
 
         this.scale(s);
 
+        //rotating maths
         this.rotAngle = 0.01*(Math.random()*2 - 1);
 
         var r = 2*Math.PI*Math.random();
@@ -27,6 +28,7 @@ var Asteroid = Polygon.extend({
         this.x += this.vel.x;
         this.y += this.vel.y;
 
+        // magic! :)  send asteroid to the other side :P
         if(this.x > this.maxX){
             this.x = 0;
         }else if(this.x < 0){
@@ -37,10 +39,11 @@ var Asteroid = Polygon.extend({
         }else if(this.y < 0){
             this.y = this.maxY;
         }
-
+        //call rotate
         this.rotate(this.rotAngle);
     },
 
+    // draw asteroid in the context
     draw: function(ctx){
         ctx.drawPolygon(this, this.x, this.y);
     }

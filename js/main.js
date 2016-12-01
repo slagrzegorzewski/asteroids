@@ -1,20 +1,11 @@
-/*
-var Game = function(){};
-
-Game.prototype.init = function(){
-
-}
-Game.prototype.run = function(){
-    console.log("blast them!!!");
-}
-*/
+// States for game
 var States = {
     NO_CHANGE: 0,
     MENU: 1,
     GAME: 2,
     END: 3
 }
-
+// making some place for game - canvas and drawing style for elements
 var Game = Class.extend({
 
     init: function(){
