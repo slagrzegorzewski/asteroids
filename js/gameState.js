@@ -11,24 +11,42 @@ var Points = {
     ]
 }
 
+var AsteroidSize = 8;
+
 var GameState = State.extend({
 
     init: function(game){
         this._super(game);
-        // save place for draw asteroids
-        var n = Math.round(Math.random() * (Points.ASTEROIDS.length - 1));
-        this.astr = new Asteroid(Points.ASTEROIDS[n], 10, 100, 100); // new asteroid 1: points, 2: scale, 3: x, 4: y
-        this.astr.maxX = game.canvas.ctx.width;
-        this.astr.maxY = game.canvas.ctx.height;
+        this.canvasWidth = game.canvas.ctx.width;
+        this.canvasHeight = game.canvas.ctx.height;
+
+        this.generateLVL();
+
+    },
+
+    generateLVL: function(){
+        var num = 3;
+        this.asteroids = [];
+        for (var i = 0; i < num; i++){
+            var n = Math.round(Math.random() * (Points.ASTEROIDS.length - 1));
+            var astr = new Asteroid(Points.ASTEROIDS[n], AsteroidSize, 100, 100); // new asteroid 1: points, 2: scale, 3: x, 4: y
+            astr.maxX = this.canvasWidth;
+            astr.maxY = this.canvasHeight;
+
+            this.asteroids.push(astr);
+        }
     },
 
     update: function(){
-        this.astr.update();
+        for (var i = 0, len = this.asteroids.length; i < len; i++){
+            this.asteroids[i].update();
+        }
     },
     // refresh context and draw asteroid
     render: function(ctx){
         ctx.clearAll();
-
-        this.astr.draw(ctx);
+        for (var i = 0, len = this.asteroids.length; i < len; i++){
+            this.asteroids[i].draw(ctx);
+        }
     }
 });
