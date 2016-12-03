@@ -9,7 +9,7 @@ var Points = {
         [-4,-1,-1,-4,2,-4,4,-1,4,1,2,4,0,4,0,2,-2,4,-4,1,-2,0,-4,-1],
         [-2,-4,2,-4,4,-2,4,2,2,4,-2,4,-4,2,-4,-2,-2,-4]
     ],
-    SHIP: [-2,0,-3,-3,6,0,-3,3,-2,0],
+    SHIP: [-2,0,-3,-3,6,0,-3,3,-2,0]
 }
 
 var AsteroidSize = 8;
@@ -41,7 +41,18 @@ var GameState = State.extend({
             this.asteroids.push(astr);
         }
     },
-
+    //key options for ship
+    handleInputs: function(input){
+        if(input.isDown("right")){
+            this.ship.rotate(0.06);
+        }
+        if(input.isDown("left")){
+            this.ship.rotate(-0.06);
+        }
+        if(input.isDown("up")){
+            this.ship.addVel();
+        }
+    },
     update: function(){
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].update();
