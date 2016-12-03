@@ -8,7 +8,8 @@ var Points = {
         [-4,-1,-1,-4,2,-4,4,-1,4,1,2,4,0,4,0,2,-2,4,-4,1,-2,0,-4,-1],
         [-4,-1,-1,-4,2,-4,4,-1,4,1,2,4,0,4,0,2,-2,4,-4,1,-2,0,-4,-1],
         [-2,-4,2,-4,4,-2,4,2,2,4,-2,4,-4,2,-4,-2,-2,-4]
-    ]
+    ],
+    SHIP: [-2,0,-3,-3,6,0,-3,3,-2,0],
 }
 
 var AsteroidSize = 8;
@@ -20,12 +21,16 @@ var GameState = State.extend({
         this.canvasWidth = game.canvas.ctx.width;
         this.canvasHeight = game.canvas.ctx.height;
 
+        this.ship = new Ship(Points.SHIP, 2, this.canvasWidth/2, this.canvasHeight/2);
+        this.ship.maxX = this.canvasWidth;
+        this.ship.maxY = this.canvasHeight;
+
         this.generateLVL();
 
     },
 
     generateLVL: function(){
-        var num = 3;
+        var num = 8;
         this.asteroids = [];
         for (var i = 0; i < num; i++){
             var n = Math.round(Math.random() * (Points.ASTEROIDS.length - 1));
@@ -41,6 +46,7 @@ var GameState = State.extend({
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].update();
         }
+        this.ship.update();
     },
     // refresh context and draw asteroid
     render: function(ctx){
@@ -48,5 +54,6 @@ var GameState = State.extend({
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].draw(ctx);
         }
+        this.ship.draw(ctx);
     }
 });
