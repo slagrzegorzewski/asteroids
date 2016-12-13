@@ -18,8 +18,8 @@ var Asteroid = Polygon.extend({
         //rotating maths
         this.rotAngle = 0.02*(Math.random()*2 - 1);
 
-        var r = 2*Math.PI*Math.random();
-        var v = Math.random() + 1;
+        var r = 2*Math.PI*Math.random(),
+            v = Math.random() + 1;
         this.vel ={
             x: v*Math.cos(r),
             y: v*Math.sin(r)
