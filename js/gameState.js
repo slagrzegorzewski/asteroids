@@ -64,7 +64,7 @@ var GameState = State.extend({
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].update();
         }
-        for (var j = 0, len = this.bullet.length; i < len; i++){
+        for (var i = 0, len = this.bullet.length; i < len; i++){
             var b = this.bullet[i];
             b.update();
             if (b.shallRemove){
@@ -81,7 +81,7 @@ var GameState = State.extend({
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].draw(ctx);
         }
-        for (var j = 0, len = this.bullet.length; i < len; i++){
+        for (var i = 0, len = this.bullet.length; i < len; i++){
             this.bullet[i].draw(ctx);
         }
         this.ship.draw(ctx);
