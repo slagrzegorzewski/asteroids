@@ -33,7 +33,7 @@ var GameState = State.extend({
     generateLVL: function(){
         var num = 8;
 
-        this.bullet = [];
+        this.bullets = [];
         this.asteroids = [];
         for (var i = 0; i < num; i++){
             var n = Math.round(Math.random() * (Points.ASTEROIDS.length - 1));
@@ -57,18 +57,28 @@ var GameState = State.extend({
             this.ship.addVel();
         }
         if(input.isPressed("spacebar")){
-            this.bullet.push(this.ship.shoot());
+            this.bullets.push(this.ship.shoot());
         }
     },
     update: function(){
         for (var i = 0, len = this.asteroids.length; i < len; i++){
-            this.asteroids[i].update();
+            var a = this.asteroids[i];
+            a.update();
+
+            for(j = 0, lenBullet = this.bullets.length; j < lenBullet; j++){
+                var b = this.bullets[j];
+                if(a.hasPoint(b.x, b.y)){
+                    this.bullets.splice(j, 1);
+                    lenBullet--;
+                    j--;
+                }
+            }
         }
-        for (var i = 0, len = this.bullet.length; i < len; i++){
-            var b = this.bullet[i];
+        for (var i = 0, len = this.bullets.length; i < len; i++){
+            var b = this.bullets[i];
             b.update();
             if (b.shallRemove){
-                this.bullet.splice(i, 1);
+                this.bullets.splice(i, 1);
                 len--;
                 i--;
             }
@@ -81,8 +91,8 @@ var GameState = State.extend({
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].draw(ctx);
         }
-        for (var i = 0, len = this.bullet.length; i < len; i++){
-            this.bullet[i].draw(ctx);
+        for (var i = 0, len = this.bullets.length; i < len; i++){
+            this.bullets[i].draw(ctx);
         }
         this.ship.draw(ctx);
     }

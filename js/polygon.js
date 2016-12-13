@@ -26,6 +26,24 @@ var Polygon = Class.extend({
     },
 
     hasPoint: function(ox, oy, x, y){
+        var c = false,
+            p = this.points,
+            len = p.length;
 
+        for(var i=0, j = len-2; i < len; i += 2){
+            var px_1 = p[i] + ox,
+                px_2 = p[j] + ox,
+                py_1 = p[i+1] + oy,
+                py_2 = p[j+1] + oy;
+
+            if ( (py_1 > y != py_2 > y) &&
+                 (x < (px_2 - px_1) *
+                 (y - py_1) /
+                 (py_2 - py_1) + px_1)){
+                c = !c;
+            }
+            j = i;
+        }
+        return c;
     }
 });
