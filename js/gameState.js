@@ -22,22 +22,36 @@ var GameState = State.extend({
         this.canvasWidth = game.canvas.ctx.width;
         this.canvasHeight = game.canvas.ctx.height;
 
-        this.ship = new Ship(Points.SHIP, Points.FLAMES, 2, this.canvasWidth/2, this.canvasHeight/2);
+        this.ship = new Ship(Points.SHIP, Points.FLAMES, 2, 0, 0);
         this.ship.maxX = this.canvasWidth;
         this.ship.maxY = this.canvasHeight;
+
+        this.lvl = 0;
 
         this.generateLVL();
 
     },
 
     generateLVL: function(){
-        var num = 8;
+        var num = Math.round((this.lvl + 5)/10 + 2);
+
+        this.ship.x = this.canvasWidth/2;
+        this.ship.y = this.canvasHeight/2;
 
         this.bullets = [];
         this.asteroids = [];
         for (var i = 0; i < num; i++){
             var n = Math.round(Math.random() * (Points.ASTEROIDS.length - 1));
-            var astr = new Asteroid(Points.ASTEROIDS[n], AsteroidSize, 100, 100); // new asteroid 1: points, 2: scale, 3: x, 4: y
+
+            var x = 0, y = 0;
+            if(Math.random() > 0.5){
+                x = Math.random() * this.canvasWidth;
+            }
+            else{
+                y = Math.random() * this.canvasHeight;
+            }
+
+            var astr = new Asteroid(Points.ASTEROIDS[n], AsteroidSize, x, y); // new asteroid 1: points, 2: scale, 3: x, 4: y
             astr.maxX = this.canvasWidth;
             astr.maxY = this.canvasHeight;
 
@@ -71,6 +85,21 @@ var GameState = State.extend({
                     this.bullets.splice(j, 1);
                     lenBullet--;
                     j--;
+
+                    if(a.size > AsteroidSize/4){
+                        for (var k = 0; k < 2; k++){
+                            var n = Math.round(Math.random() * (Points.ASTEROIDS.length - 1));
+                            var astr = new Asteroid(Points.ASTEROIDS[n], a.size/2, a.x, a.y); // new asteroid 1: points, 2: scale, 3: x, 4: y
+                            astr.maxX = this.canvasWidth;
+                            astr.maxY = this.canvasHeight;
+
+                            this.asteroids.push(astr);
+                            len++;
+                        }
+                    }
+                    this.asteroids.splice(i, 1);
+                    len--;
+                    i--;
                 }
             }
         }
@@ -84,6 +113,11 @@ var GameState = State.extend({
             }
         }
         this.ship.update();
+
+        if(this.asteroids.length === 0){
+            this.lvl++;
+            this.generateLVL();
+        }
     },
     // refresh context and draw asteroid
     render: function(ctx){
