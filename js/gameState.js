@@ -33,7 +33,7 @@ var GameState = State.extend({
     },
 
     generateLVL: function(){
-        var num = Math.round((this.lvl + 5)/10 + 2);
+        var num = Math.round(10 * Math.atan(this.lvl / 25)) + 5;
 
         this.ship.x = this.canvasWidth/2;
         this.ship.y = this.canvasHeight/2;
@@ -78,6 +78,18 @@ var GameState = State.extend({
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             var a = this.asteroids[i];
             a.update();
+            //collide system and reset ship position.
+            if(this.ship.collide(a)){
+                this.ship.x = this.canvasWidth/2;
+                this.ship.y = this.canvasHeight/2;
+
+                this.ship.vel = {
+                    x: 0,
+                    y: 0
+                }
+
+                console.log("collide");
+            }
 
             for(j = 0, lenBullet = this.bullets.length; j < lenBullet; j++){
                 var b = this.bullets[j];

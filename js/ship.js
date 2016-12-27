@@ -22,6 +22,16 @@ var Ship = Polygon.extend({
             y:0
         }
     },
+    collide: function(astr){
+        for(var i=0, len = this.points.length - 2; i < len; i = i + 2){
+            var x = this.points[i] + this.x,
+                y = this.points[i + 1] + this.y;
+            if ( astr.hasPoint(x, y)){
+                return true;
+            }
+        }
+        return false;
+    },
     shoot: function(){
         var b = new Bullet(this.points[0] + this.x, this.points[1] + this.y, this.angle);
         b.maxX = this.maxX;
