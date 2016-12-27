@@ -9,7 +9,7 @@ var States = {
 var Game = Class.extend({
 
     init: function(){
-        this.canvas = new Canvas(640,480); // set resolution for workspace
+        this.canvas = new Canvas(800,600); // set resolution for workspace
 
         this.input = new InputHandler({
             left: 37,

@@ -10,6 +10,9 @@ var Canvas = Class.extend({
             ctx.width = ctx.canvas.width;
             ctx.height = ctx.canvas.height;
 
+            ctx.ACODE = "A".charCodeAt(0);
+            ctx.ZCODE = "0".charCodeAt(0);
+
             ctx.drawPolygon = function(p, x, y){
                 p = p.points;
 
@@ -21,9 +24,36 @@ var Canvas = Class.extend({
                 this.stroke();
             };
 
+            ctx.vectorText = function(text, s, x, y){
+                text = text.toString().toUpperCase();
+                var step = s * 6;
+
+                x = x + 0.5;
+                y = y + 0.5;
+
+                for(var i = 0, len = text.length; i < len; i++){
+                    var ch = text.charCodeAt(i);
+
+                    var p;
+                    if(ch - this.ACODE >= 0){
+                        p = Points.LETTERS[ch - this.ACODE];
+                    }
+                    else{
+                        p = Points.NUMBERS[ch - this.ZCODE];
+                    }
+                    this.beginPath();
+                    this.moveTo(p[0] * s + x, p[1] * s + y);
+                    for(var j = 2, len2 = p.length; j < len2; j += 2){
+                        this.lineTo(p[j] * s + x, p[j + 1] * s + y);
+                    }
+                    this.stroke();
+                    x = x + step;
+                }
+            };
+
             ctx.clearAll = function(){
                 this.clearRect(0, 0, this.width, this.height);
-            }
+            };
 
             return ctx;
         })(this.canvas.getContext("2d"));

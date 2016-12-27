@@ -1,17 +1,6 @@
 console.log("gamestate");
 
 // asteroids points to draw
-var Points = {
-    ASTEROIDS: [
-        [-4,-2,-2,-4,0,-2,2,-4,4,-2,3,0,4,2,1,4,-2,4,-4,2,-4,-2],
-        [-4,-2,-2,-4,0,-3,2,-4,4,-2,2,-1,4,1,2,4,-1,3,-2,4,-4,2,-3,0,-4,-2],
-        [-4,-1,-1,-4,2,-4,4,-1,4,1,2,4,0,4,0,2,-2,4,-4,1,-2,0,-4,-1],
-        [-4,-1,-1,-4,2,-4,4,-1,4,1,2,4,0,4,0,2,-2,4,-4,1,-2,0,-4,-1],
-        [-2,-4,2,-4,4,-2,4,2,2,4,-2,4,-4,2,-4,-2,-2,-4]
-    ],
-    SHIP: [-2,0,-3,-3,6,0,-3,3,-2,0],
-    FLAMES: [-2,0,-3,-1,-5,0,-3,1,-2,0]
-}
 
 var AsteroidSize = 8;
 
@@ -151,8 +140,10 @@ var GameState = State.extend({
     // refresh context and draw asteroid
     render: function(ctx){
         ctx.clearAll();
+
+        ctx.vectorText(this.score, 3, 15, 20)
         for(var i = 0; i < this.lives; i++){
-            ctx.drawPolygon(this.lifePolygon, 30 + 25 * i, 30);
+            ctx.drawPolygon(this.lifePolygon, 20 + 30 * i, 60);
         }
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].draw(ctx);
