@@ -26,6 +26,12 @@ var GameState = State.extend({
         this.ship.maxX = this.canvasWidth;
         this.ship.maxY = this.canvasHeight;
 
+        this.lives = 3;
+        this.lifePolygon = new Polygon(Points.SHIP);
+        this.lifePolygon.scale(1.5);
+        this.lifePolygon.rotate(-Math.PI/2);
+        this.gameOver = false;
+
         this.lvl = 0;
 
         this.generateLVL();
@@ -60,13 +66,18 @@ var GameState = State.extend({
     },
     //key options for ship
     handleInputs: function(input){
+        if(!this.ship.visible){
+            if(input.isPressed("spacebar")){
+                this.ship.visible = true;
+            }
+            return;
+        }
         if(input.isDown("right")){
             this.ship.rotate(0.06);
         }
         if(input.isDown("left")){
             this.ship.rotate(-0.06);
         }
-        this.ship.drawFlames = false;
         if(input.isDown("up")){
             this.ship.addVel();
         }
@@ -87,6 +98,11 @@ var GameState = State.extend({
                     x: 0,
                     y: 0
                 }
+                this.lives--;
+                if(this.lives <= 0){
+                    this.gameOver = true;
+                }
+                this.ship.visible = false;
 
                 console.log("collide");
             }
@@ -134,6 +150,9 @@ var GameState = State.extend({
     // refresh context and draw asteroid
     render: function(ctx){
         ctx.clearAll();
+        for(var i = 0; i < this.lives; i++){
+            ctx.drawPolygon(this.lifePolygon, 30 + 25 * i, 30);
+        }
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].draw(ctx);
         }
