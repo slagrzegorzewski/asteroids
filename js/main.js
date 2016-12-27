@@ -19,7 +19,7 @@ var Game = Class.extend({
             spacebar: 32
         })
 
-        this.canvas.ctx.strokeStyle = "#fff";
+//        this.canvas.ctx.strokeStyle = "#fff";
 
         this.currentState = null;
         this.nextState = States.GAME;

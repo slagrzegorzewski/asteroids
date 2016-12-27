@@ -143,7 +143,7 @@ var GameState = State.extend({
 
         ctx.vectorText(this.score, 3, 15, 20)
         for(var i = 0; i < this.lives; i++){
-            ctx.drawPolygon(this.lifePolygon, 20 + 30 * i, 60);
+            ctx.drawPolygonShip(this.lifePolygon, 20 + 30 * i, 60);
         }
         for (var i = 0, len = this.asteroids.length; i < len; i++){
             this.asteroids[i].draw(ctx);

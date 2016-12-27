@@ -21,6 +21,19 @@ var Canvas = Class.extend({
                 for(var i = 2, len = p.length; i < len; i += 2){
                     this.lineTo(p[i] + x, p[i + 1] + y);
                 }
+                this.strokeStyle = "#FFF";
+                this.stroke();
+            };
+
+            ctx.drawPolygonShip = function(p, x, y){
+                p = p.points;
+
+                this.beginPath();
+                this.moveTo(p[0] + x, p[1] + y);
+                for(var i = 2, len = p.length; i < len; i += 2){
+                    this.lineTo(p[i] + x, p[i + 1] + y);
+                }
+                this.strokeStyle = "#F00";
                 this.stroke();
             };
 
@@ -46,6 +59,7 @@ var Canvas = Class.extend({
                     for(var j = 2, len2 = p.length; j < len2; j += 2){
                         this.lineTo(p[j] * s + x, p[j + 1] * s + y);
                     }
+                    this.strokeStyle = "#00FF00";
                     this.stroke();
                     x = x + step;
                 }

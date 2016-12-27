@@ -76,9 +76,9 @@ var Ship = Polygon.extend({
         if(!this.visible){
             return;
         }
-        ctx.drawPolygon(this, this.x, this.y);
+        ctx.drawPolygonShip(this, this.x, this.y);
         if (this.drawFlames){
-            ctx.drawPolygon(this.flames, this.x, this.y);
+            ctx.drawPolygonShip(this.flames, this.x, this.y);
             this.drawFlames = false;
         }
     }
