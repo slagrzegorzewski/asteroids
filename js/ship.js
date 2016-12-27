@@ -23,6 +23,9 @@ var Ship = Polygon.extend({
         }
     },
     collide: function(astr){
+        if(!this.visible){
+            return false;
+        }
         for(var i=0, len = this.points.length - 2; i < len; i = i + 2){
             var x = this.points[i] + this.x,
                 y = this.points[i + 1] + this.y;

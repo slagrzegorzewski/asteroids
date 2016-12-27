@@ -32,6 +32,7 @@ var GameState = State.extend({
         this.lifePolygon.rotate(-Math.PI/2);
         this.gameOver = false;
 
+        this.score = 0;
         this.lvl = 0;
 
         this.generateLVL();
