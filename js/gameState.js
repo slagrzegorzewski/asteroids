@@ -29,7 +29,7 @@ var GameState = State.extend({
     },
 
     generateLVL: function(){
-        var num = Math.round(10 * Math.atan(this.lvl / 25)) + 5;
+        var num = Math.round(10 * Math.atan(this.lvl / 25)) + 4;
 
         this.ship.x = this.canvasWidth/2;
         this.ship.y = this.canvasHeight/2;
@@ -103,6 +103,17 @@ var GameState = State.extend({
                     this.bullets.splice(j, 1);
                     lenBullet--;
                     j--;
+                    switch (a.size){
+                        case AsteroidSize:
+                            this.score += 20;
+                            break;
+                        case AsteroidSize/2:
+                            this.score += 50;
+                            break;
+                        case AsteroidSize/4:
+                            this.score += 100;
+                            break;
+                    }
 
                     if(a.size > AsteroidSize/4){
                         for (var k = 0; k < 2; k++){
