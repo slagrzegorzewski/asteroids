@@ -12,6 +12,7 @@ var Canvas = Class.extend({
 
             ctx.ACODE = "A".charCodeAt(0);
             ctx.ZCODE = "0".charCodeAt(0);
+            ctx.SCODE = " ".charCodeAt(0);
 
             ctx.drawPolygon = function(p, x, y){
                 p = p.points;
@@ -41,11 +42,23 @@ var Canvas = Class.extend({
                 text = text.toString().toUpperCase();
                 var step = s * 6;
 
+                if(typeof x !== "number"){
+                    x = Math.round((this.width - text.length * step) / 2);
+                }
+                if(typeof y !== "number"){
+                    y = Math.round((this.height - step) / 2);
+                }
+
                 x = x + 0.5;
                 y = y + 0.5;
 
                 for(var i = 0, len = text.length; i < len; i++){
                     var ch = text.charCodeAt(i);
+
+                    if(ch === this.SCODE){
+                        x = x + step;
+                        continue;
+                    }
 
                     var p;
                     if(ch - this.ACODE >= 0){

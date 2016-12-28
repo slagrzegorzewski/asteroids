@@ -22,7 +22,7 @@ var Game = Class.extend({
 //        this.canvas.ctx.strokeStyle = "#fff";
 
         this.currentState = null;
-        this.nextState = States.GAME;
+        this.nextState = States.MENU;
     },
 
     run: function(){
@@ -31,7 +31,7 @@ var Game = Class.extend({
             if(self.nextState !== States.NO_CHANGE){
                 switch(self.nextState){
                         case States.MENU:
-                        self.currentState = new State(self);
+                        self.currentState = new MenuState(self);
                         break;
                         case States.GAME:
                         self.currentState = new GameState(self);
