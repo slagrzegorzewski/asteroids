@@ -162,6 +162,9 @@ var GameState = State.extend({
         for (var i = 0, len = this.bullets.length; i < len; i++){
             this.bullets[i].draw(ctx);
         }
+        if(this.gameOver){
+            ctx.vectorText("game over", 8, null, null);
+        }
         this.ship.draw(ctx);
     }
 });
