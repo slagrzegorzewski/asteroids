@@ -23,7 +23,10 @@ var Game = Class.extend({
 //        this.canvas.ctx.strokeStyle = "#fff";
 
         this.currentState = null;
-        this.nextState = States.END;
+        this.stateVars = {
+            score: 0
+        }
+        this.nextState = States.MENU;
     },
 
     run: function(){

@@ -29,7 +29,7 @@ var GameState = State.extend({
     },
 
     generateLVL: function(){
-        var num = Math.round(10 * Math.atan(this.lvl / 25)) + 4;
+        var num = Math.round(10 * Math.atan(this.lvl / 25)) + 5 ;
 
         this.ship.x = this.canvasWidth/2;
         this.ship.y = this.canvasHeight/2;
@@ -58,6 +58,11 @@ var GameState = State.extend({
     handleInputs: function(input){
         if(!this.ship.visible){
             if(input.isPressed("spacebar")){
+                if(this.gameOver){
+                    this.game.nextState = States.END;
+                    this.game.stateVars.score = this.score;
+                    return;
+                }
                 this.ship.visible = true;
             }
             return;

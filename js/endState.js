@@ -4,7 +4,7 @@ var EndState = State.extend({
         this.game = game;
         this.hasEnterName = false;
         this.nick = "no name";
-        this.score = 200;
+        this.score = game.stateVars.score;
 
         this.hiscores =[
             ["Szybki Edek", 5000],

@@ -5,7 +5,7 @@
     <title>Asteroids</title>
 
     <link rel="stylesheet" href="./css/style.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
 
     <script src="./js/lib/class.js"></script>
 
@@ -23,8 +23,14 @@
     <script src="./js/main.js"></script>
 </head>
 <body>
+   <div class="name">
+       <span>Put Your nick for save score:</span><br>
+       <input type="text" id="namefield">
+   </div>
+<!--
    <span>Put Your nick for save score:</span><br>
    <input type="text" id="namefield">
+-->
     <script>
         var game = new Game();
         game.run();

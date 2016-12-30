@@ -1,10 +1,62 @@
+body{
+    background-color:#666;
+    /* Background pattern from subtlepatterns.com */
+    background-image: url("../img/bkg.png");
+}
 canvas{
     background-color:#000;
     display:block;
     position:absolute;
+    -webkit-box-shadow: 0px 0px 100px 35px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 100px 35px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 100px 35px rgba(0,0,0,0.75);
     margin:auto;
     top:0;
     bottom:0;
     left:0;
     right:0;
+}
+.name{
+    margin-top:50px;
+    margin-left:50px;
+    background-color:black;
+    display:inline-block;
+    width:350px;
+    height:300px;
+    -webkit-box-shadow: 0px 0px 100px 16px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 100px 16px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 100px 16px rgba(0,0,0,0.75);
+
+}
+#namefield{
+    display:block;
+    width:200px;
+    padding:10px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #000;
+    border: 2px solid #000;
+    border-radius: 6px;
+    text-align:center;
+    color: #00FF00;
+    font-size:20px;
+    transition-duration: 2s;
+    -webkit-box-shadow: 0px 0px 60px -1px rgba(204,0,0,1);
+    -moz-box-shadow: 0px 0px 60px -1px rgba(204,0,0,1);
+    box-shadow: 0px 0px 60px -1px rgba(204,0,0,1);
+    outline:none;
+}
+#namefield:focus {
+    transition-duration: 2s;
+	-webkit-box-shadow: 0px 0px 60px -1px rgba(0,204,0,1);
+    -moz-box-shadow: 0px 0px 60px -1px rgba(0,204,0,1);
+    box-shadow: 0px 0px 60px -1px rgba(0,204,0,1);
+    outline:none;
+}
+span{
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    display:block;
+    color:#0f0;
+    margin: 60px 30px;
 }
