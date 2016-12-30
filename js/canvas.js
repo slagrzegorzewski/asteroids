@@ -38,9 +38,12 @@ var Canvas = Class.extend({
                 this.stroke();
             };
 
-            ctx.vectorText = function(text, s, x, y){
+            ctx.vectorText = function(text, s, x, y, offset){
                 text = text.toString().toUpperCase();
                 var step = s * 6;
+                if(typeof offset === "number"){
+                    x = x + step * (offset - text.length);
+                }
 
                 if(typeof x !== "number"){
                     x = Math.round((this.width - text.length * step) / 2);

@@ -16,13 +16,14 @@ var Game = Class.extend({
             up: 38,
             right: 39,
             down: 40,
-            spacebar: 32
+            spacebar: 32,
+            enter: 13
         })
 
 //        this.canvas.ctx.strokeStyle = "#fff";
 
         this.currentState = null;
-        this.nextState = States.MENU;
+        this.nextState = States.END;
     },
 
     run: function(){
@@ -37,7 +38,7 @@ var Game = Class.extend({
                         self.currentState = new GameState(self);
                         break;
                         case States.END:
-                        self.currentState = new State(self);
+                        self.currentState = new EndState(self);
                         break;
                 }
                 self.nextState = States.NO_CHANGE;
